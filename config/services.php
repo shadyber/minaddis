@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => '815671282422-l3aq4r35ele9c76lutklbmonetkb7va9.apps.googleusercontent.com',
+        'client_secret' => 'eHsIbSaP9KvfBy1A-KUsWKuE',
+        'redirect' => 'https://minaddis.com/auth/google/callback',
+    ],
 ];

@@ -102,7 +102,7 @@
                                             {{$videos[$i]->cateogry_id}}  <a title="{{$videos[$i]->id}}" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
                                         </div>
                                         <div class="video-view">
-                                            1.8M views &nbsp;<i class="fas fa-calendar-alt"></i>{{$videos[$i]->created_at->diffForHumans()}}
+                                            {{$videos[$i]->visit}}  views &nbsp;<i class="fas fa-calendar-alt"></i>{{$videos[$i]->created_at->diffForHumans()}}
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                                             {{$videos[$i]->cateogry_id}}  <a title="{{$videos[$i]->id}}" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
                                         </div>
                                         <div class="video-view">
-                                            1.8M views &nbsp;<i class="fas fa-calendar-alt"></i>{{$videos[$i]->created_at->diffForHumans()}}
+                                            {{$videos[$i]->visit}} views &nbsp;<i class="fas fa-calendar-alt"></i>{{$videos[$i]->created_at->diffForHumans()}}
                                         </div>
                                     </div>
                                 </div>

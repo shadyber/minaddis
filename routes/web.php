@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome')->with('videos',$videos);
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,3 +27,7 @@ Route::resource('/category','CategoryController');
 Route::resource('/channel','ChannelsController');
 Route::resource('/history','HistoryController');
 Route::resource('/subscribtion','SubscribtionController');
+
+
+Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');

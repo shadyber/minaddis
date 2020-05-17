@@ -34,4 +34,9 @@ return [
         'client_secret' => 'eHsIbSaP9KvfBy1A-KUsWKuE',
         'redirect' => 'https://minaddis.com/auth/google/callback',
     ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT'),
+    ],
 ];

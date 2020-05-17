@@ -31,3 +31,6 @@ Route::resource('/subscribtion','SubscribtionController');
 
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
+Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirect');
+Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');

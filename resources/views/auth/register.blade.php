@@ -72,6 +72,11 @@
                     <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-danger btn-block">
                         <strong>Login With Google</strong>
                     </a>
+                  <a href="{{ url('/redirect') }}" style="margin-top: 20px;" class="btn btn-lg btn-info btn-block">
+                        <strong>Login With Facebook</strong>
+                    </a>
+
+
                 </div>
             </div>
         </div>

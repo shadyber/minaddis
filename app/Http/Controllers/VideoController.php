@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Channels;
 use App\History;
+use App\Subscribtion;
 use App\Video;
 use Illuminate\Http\Request;
 use Auth;
@@ -97,7 +98,7 @@ class VideoController extends Controller
         $videos= Video::where('category_id', 'LIKE', '' . $cat. '')->get();
         $channel=Channels::where('id', 'LIKE',''.$video->channels_id)->get();
         $category=Category::where('id', 'LIKE',''.$video->category_id)->get();
-
+        $usbscribers=Subscribtion::where('channels_id', 'LIKE',''.$video->channels_id)->get();
         if(Auth::user()){
           $user_id= Auth::user()->id;
           $history=new History();
@@ -106,8 +107,7 @@ class VideoController extends Controller
           $history->save();
         }
 
-
-return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category]);
+return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category,'subscribers'=>$usbscribers]);
 
     }
 

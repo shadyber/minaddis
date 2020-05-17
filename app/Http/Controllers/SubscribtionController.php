@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\category;
-use App\Video;
+use App\Subscribtion;
 use Illuminate\Http\Request;
-
-class CategoryController extends Controller
+use Auth;
+class SubscribtionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,30 +41,40 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+
+     $subscribtionstatus=Subscribtion::where('user_id', 'LIKE', '' .  Auth::user()->id)->get()->where('channels_id', 'LIKE', '' .request('channel_id'));
+  //  return $subscribtionstatus;
+     if(count($subscribtionstatus)==0){
+
+         $subscribe=new Subscribtion();
+
+         $subscribe->channels_id=\request('channel_id');
+         $subscribe->user_id=Auth::user()->id;
+
+         $subscribe->save();
+     }
+
+        return redirect()->back()->with('success', 'done');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\category  $category
+     * @param  \App\Subscribtion  $subscribtion
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show(Subscribtion $subscribtion)
     {
         //
-
-        $videos= Video::where('category_id', 'LIKE', '' . $category->id. '')->orderBy('created_at', 'desc')->paginate(12);
-
-        return view('catagory.show')->with(['category'=>$category,'videos'=>$videos]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\category  $category
+     * @param  \App\Subscribtion  $subscribtion
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit(Subscribtion $subscribtion)
     {
         //
     }
@@ -69,10 +83,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\category  $category
+     * @param  \App\Subscribtion  $subscribtion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request, Subscribtion $subscribtion)
     {
         //
     }
@@ -80,10 +94,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\category  $category
+     * @param  \App\Subscribtion  $subscribtion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category)
+    public function destroy(Subscribtion $subscribtion)
     {
         //
     }

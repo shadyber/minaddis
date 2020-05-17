@@ -20,20 +20,25 @@
         @foreach($channels as $channel)
 
       <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="channels-card">
+          {!! Form::open(['url' => '/subscribtion','method'=>'post','class'=>'ajaxform']) !!}
+
+          <input type="hidden" value="{{$channel->id}}" name="channel_id">
+
+          <div class="channels-card">
                 <div class="channels-card-image">
                     <a href="/channel/{{$channel->id}}"><img class="img-fluid" src="{{$channel->avatar}}" alt="{{$channel->name}}"></a>
-                    <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div>
+                    <div class="channels-card-image-btn"><button type="submit" class="btn btn-outline-danger btn-sm">Subscribe <strong>  {{count($channel->subscribtion)}}</strong></button></div>
                 </div>
                 <div class="channels-card-body">
                     <div class="channels-title">
                         <a href="/channel/{{$channel->id}}">{{$channel->name}}</a>
                     </div>
                     <div class="channels-view">
-                        382,323 subscribers
+                        {{count($channel->subscribtion)}} subscribers
                     </div>
                 </div>
             </div>
+          {!! Form::close() !!}
         </div>
 
         @endforeach
@@ -63,87 +68,30 @@
                         <h6>Featured Videos</h6>
                     </div>
                 </div>
-                        <div class="col-xl-3 col-sm-6 mb-3">
-                            <div class="video-card">
-                                <div class="video-card-image">
-                                    <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                                    <a href="#"><img class="img-fluid" src="/img/v5.png" alt=""></a>
-                                    <div class="time">3:50</div>
+                @foreach($videos as $video)
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="video-card">
+                            <div class="video-card-image">
+                                <a class="play-icon" href="/video/{{$video->id}}"><i class="fas fa-play-circle"></i></a>
+                                <a href="/video/{{$video->id}}"><img class="img-fluid" src="{{$video->thumb_small}}" alt="{{$video->title}}"></a>
+                                <div class="time">3:50</div>
+                            </div>
+                            <div class="video-card-body">
+                                <div class="video-title">
+                                    <a href="/video/{{$video->id}}">{{$video->title}}</a>
                                 </div>
-                                <div class="video-card-body">
-                                    <div class="video-title">
-                                        <a href="#">There are many variations of passages of Lorem</a>
-                                    </div>
-                                    <div class="video-page text-success">
-                                        Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
-                                    </div>
-                                    <div class="video-view">
-                                        1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
-                                    </div>
+                                <div class="video-page text-success">
+                                    {{$video->category_id}}  <a title="{{$video->title}}" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
+                                </div>
+                                <div class="video-view">
+                                    {{$video->visit}} views &nbsp;<i class="fas fa-calendar-alt"></i> {{$video->created_at->diffForHumans()}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 mb-3">
-                            <div class="video-card">
-                                <div class="video-card-image">
-                                    <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                                    <a href="#"><img class="img-fluid" src="img/v6.png" alt=""></a>
-                                    <div class="time">3:50</div>
-                                </div>
-                                <div class="video-card-body">
-                                    <div class="video-title">
-                                        <a href="#">There are many variations of passages of Lorem</a>
-                                    </div>
-                                    <div class="video-page text-danger">
-                                        Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Unverified"><i class="fas fa-frown text-danger"></i></a>
-                                    </div>
-                                    <div class="video-view">
-                                        1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 mb-3">
-                            <div class="video-card">
-                                <div class="video-card-image">
-                                    <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                                    <a href="#"><img class="img-fluid" src="img/v7.png" alt=""></a>
-                                    <div class="time">3:50</div>
-                                </div>
-                                <div class="video-card-body">
-                                    <div class="video-title">
-                                        <a href="#">There are many variations of passages of Lorem</a>
-                                    </div>
-                                    <div class="video-page text-success">
-                                        Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
-                                    </div>
-                                    <div class="video-view">
-                                        1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 mb-3">
-                            <div class="video-card">
-                                <div class="video-card-image">
-                                    <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                                    <a href="#"><img class="img-fluid" src="/img/v8.png" alt=""></a>
-                                    <div class="time">3:50</div>
-                                </div>
-                                <div class="video-card-body">
-                                    <div class="video-title">
-                                        <a href="#">There are many variations of passages of Lorem</a>
-                                    </div>
-                                    <div class="video-page text-success">
-                                        Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
-                                    </div>
-                                    <div class="video-view">
-                                        1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-           </div>
+                    </div>
+                @endforeach
+
+            </div>
         </div>
  </div>
 @endsection

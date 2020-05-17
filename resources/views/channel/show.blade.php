@@ -57,7 +57,7 @@
             </nav>
         </div>
 
-            <div class="video-block section-padding">
+        <div class="video-block section-padding">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="main-title">
@@ -104,7 +104,7 @@
                     </ul>
                 </nav>
             </div>
-        </div>
+
         <!-- /.container-fluid -->
 
 

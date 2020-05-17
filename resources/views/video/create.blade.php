@@ -13,6 +13,7 @@
             <h6>Post Your Video</h6>
         </div>
     </div>
+
     <div class="col-md-12">
 <div class="row">
 

@@ -18,4 +18,8 @@ class Channels extends Model
     {
         return $this->hasMany(Video::class);
     }
+    public function subscribtion()
+    {
+        return $this->hasMany(Subscribtion::class);
+    }
 }

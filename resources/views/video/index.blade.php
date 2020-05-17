@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="video-block section-padding">
-        <div class="row">
             @foreach($videos as $video)
             <div class="col-xl-3 col-sm-6 mb-3">
                 <div class="video-card">

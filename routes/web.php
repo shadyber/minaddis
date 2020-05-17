@@ -26,3 +26,4 @@ Route::resource('/video','VideoController');
 Route::resource('/category','CategoryController');
 Route::resource('/channel','ChannelsController');
 Route::resource('/history','HistoryController');
+Route::resource('/subscribtion','SubscribtionController');

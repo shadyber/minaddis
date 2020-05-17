@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,47 +35,48 @@
     <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
 </head>
-<body  id="page-top">
+<body id="page-top">
 <div id="app">
 @include('layouts.inc.nav')
     <div id="wrapper">
-
-        @include('layouts.inc.sidebar')
+        <!-- Sidebar -->
+    @include('layouts.inc.sidebar')
         <div id="content-wrapper">
             <div class="container-fluid">
                 <div class="video-block section-padding">
                     <div class="row">
-                        @include('layouts.inc.flash')
-                        @yield('content')
 
-                      </div>
-                 </div>
-            </div>
+@include('layouts.inc.flash')
 
-            <!-- /.container-fluid -->
+ @yield('content')
 
-        </div>
 
-    </div>
-</div>    <!-- /.content-wrapper -->   <!-- Sticky Footer -->
-<footer class="sticky-footer">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-lg-6 col-sm-6">
-                <p class="mt-1 mb-0"><strong class="text-dark">Minaddis</strong>.
-                    <small class="mt-0 mb-0"><a class="text-primary" target="_blank" href="http://rootsystem.info">r∞t system</a>
-                    </small>
-                </p>
-            </div>
-            <div class="col-lg-6 col-sm-6 text-right">
-                <div class="app">
-                    <a href="#"><img alt="" src="/img/google.png"></a>
-                    <a href="#"><img alt="" src="/img/apple.png"></a>
+                    </div>
                 </div>
             </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-lg-6 col-sm-6">
+                            <p class="mt-1 mb-0"><strong class="text-dark">Minaddis</strong>.
+                                <small class="mt-0 mb-0"><a class="text-primary" target="_blank" href="http://rootsystem.info">r∞t system</a>
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 text-right">
+                            <div class="app">
+                                <a href="#"><img alt="" src="/img/google.png"></a>
+                                <a href="#"><img alt="" src="/img/apple.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
+        <!-- /.content-wrapper -->
     </div>
-</footer>
     <!-- /#wrapper -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -119,6 +118,38 @@
     <script src="/vendor/owl-carousel/owl.carousel.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/js/custom.js"></script>
+    <script>
+        $(document).ready(function(){
+
+          $('.ajaxform').submit(function(e){
+             e.preventDefault();
+              var url=$(this).attr("action");
+              var method=$(this).attr("method");
+
+              $.ajax({
+                  url: url,
+                  type: method,
+                  data:  new FormData(this),
+                  contentType: false,
+                  cache: true,
+                  processData:false,
+                  beforeSend: function(){
+
+
+                  },
+                  success: function(data)
+                  {
+                      $(this).find("button[type='submit']").prop('hidden',true);
+
+                  },
+                  error: function(err)
+                  {
+
+                  }
+              });
+          });
+        });
+    </script>
 @stack('js')
 </body>
 </html>

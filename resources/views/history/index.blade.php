@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <div class="row">
     <div class="col-md-12">
         <div class="main-title">
             <div class="btn-group float-right right-action">
@@ -15,8 +16,9 @@
             <h6>Watch History</h6>
         </div>
     </div>
+
         @foreach($histories as $history)
-    <div class="col-xl-3 col-sm-6 mb-3">
+           <div class="col-xl-3 col-sm-6 mb-3">
         <div class="video-card history-video">
             <div class="video-card-image">
                 <a class="video-close" href="#"><i class="fas fa-times-circle"></i></a>
@@ -41,8 +43,8 @@
         </div>
     </div>
         @endforeach
-    </div>
 
+    </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center pagination-sm mb-0">
             {{$histories->links()}}
@@ -52,7 +54,5 @@
 
 @endsection
 <script>
-    $('.video-close').on('click',function() {
-        $(this).closest('.history-video').fadeOut();
-    })
+
 </script>

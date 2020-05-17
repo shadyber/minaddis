@@ -21,6 +21,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(History::class);
     }
+    public function subscribtion()
+    {
+        return $this->hasMany(Subscribtion::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="col-md-12">
         <div class="main-title">
             <div class="btn-group float-right right-action">
@@ -13,15 +14,13 @@
                     <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
                 </div>
             </div>
-            <h6>Welcome</h6>
+            <h6>Minaddis Home</h6>
         </div>
     </div>
+
     <div class="col-md-12">
 
-<div class="container">
-    <div class="row justify-content-center">
 
-    </div>
-</div>
+
     </div>
 @endsection

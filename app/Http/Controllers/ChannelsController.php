@@ -22,9 +22,8 @@ class ChannelsController extends Controller
     {
         //
         $channels =Channels::paginate(12);
-
-      //  return $users;
-        return view('channel.index', ['channels' => $channels]);
+$videos=Video::orderBy('visit', 'desc')->paginate(4);
+        return view('channel.index', ['channels' => $channels,'videos'=>$videos]);
     }
 
     /**

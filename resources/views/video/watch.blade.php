@@ -68,12 +68,13 @@
                         <div class="single-video-author box mb-3 ">
                             <hr>
                                              {!! Form::open(['url' => '/review','method'=>'post','class'=>' form-horizontal']) !!}
-                        <div class="col-md-10">
+                        <div class="col-md-10 ratingstars">
                             <a href="javascript: rate('1')" class="rate" value="1"><i class="fa fa-star fa-x2"> </i> </a>
                             <a href="javascript: rate('2')" class="rate" value="2"><i class="fa fa-star fa-x2"> </i> </a>
                             <a href="javascript: rate('3')" class="rate" value="3"><i class="fa fa-star fa-x2"> </i> </a>
                             <a href="javascript: rate('4')" class="rate" value="4"><i class="fa fa-star fa-x2"> </i> </a>
                             <a href="javascript: rate('5')" class="rate" value="5"><i class="fa fa-star fa-x2"></i> </a>
+                            (<strong id="starsvalue" style="font-size: 1.8em;"> 0 </strong>)
                         </div>
 
                                                 <input type="hidden" value="{{$vid->id}}" name="video_id">
@@ -97,12 +98,12 @@
 
                                 <div class="col-sm-10">
                                     <small class=""> </small>
-                                    <button type="submit" class="btn btn-success btn-green float-right">Leave a Review</button>
+                                    <button type="submit" class="btn btn-success btn-green">Leave a Review</button>
 
                                 </div>
                             </div>
 
-
+                            <hr>
                                              {!! Form::close() !!}
 
 
@@ -115,14 +116,14 @@
                                             <hr/>
                                             <div class="row">
 
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-4">
                                                     <img src="{{$review->user->avatar}}" class="img-rounded">
                                                     <div class="review-block-name"><a href="#">{{$review->user->name}}</a></div>
                                                     <div class="review-block-date"><small>  {{$review->created_at->diffForHumans()}}</small> </div>
                                                 </div>
 
 
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-8">
                                                     <div class="review-block-rate">
                                                 @for($i=0;$i<$review->star;$i++)
                                                  <i class="fa fa-star"></i>
@@ -321,5 +322,7 @@ var video={!! json_encode($vid->toArray()) !!}
 <script>
     function rate(value){
 document.getElementById('star').value=value;
+document.getElementById('starsvalue').textContent=value;
+
     }
 </script>

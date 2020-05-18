@@ -35,6 +35,10 @@
                         <div class="single-video-title box mb-3">
                             <h2><a href="#">{{$vid->title}}.</a></h2>
                             <p class="mb-0"><i class="fas fa-eye"></i> {{$vid->visit}} views</p>
+                          
+                            <div class="fb-share-button" data-href="https://minaddis.com/video/{{$vid->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fminaddis.com%2Fvideo%2F{{$vid->id}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+
                         </div>
                         @foreach($channel as $ch)
                         <div class="single-video-author box mb-3 ">
@@ -63,7 +67,7 @@
                                   @endforeach
 
                             </p>
-                        </div>
+                          </div>
 
                         <div class="single-video-author box mb-3 ">
                             <hr>

@@ -39,8 +39,8 @@
         </a>
         <div class="dropdown-menu">
 
-            <a class="dropdown-item" href="/category/1">Movie</a>
-            <a class="dropdown-item" href="/category/2">Music</a>
+            <a class="dropdown-item" href="/category/2">Movie</a>
+            <a class="dropdown-item" href="/category/1">Music</a>
             <a class="dropdown-item" href="/category/3">Television</a>
 
         </div>

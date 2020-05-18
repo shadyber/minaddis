@@ -120,12 +120,16 @@ class VideoController extends Controller
 
 
         SEOTools::setTitle('Minaddis Watch'.$video->title);
-        SEOTools::setDescription($video->detail.'Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
         SEOTools::opengraph()->setUrl('https://minaddis.com/video/'.$video->id);
         SEOTools::setCanonical('https://minaddis.com/video/'.$video->id);
         SEOTools::opengraph()->addProperty('type', 'videos');
         SEOTools::twitter()->setSite('@minaddis');
         SEOTools::jsonLd()->addImage($video->thumb_big);
+
+        SEOTools::OpenGraph()->addImage($video->thumb_big);
+         SEOTools::OpenGraph()->addImage($video->thumb_small);
+
 
         return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category,'subscribers'=>$usbscribers]);
 

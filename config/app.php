@@ -232,7 +232,7 @@ return [
         'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
         'JsonLd'   => Artesaos\SEOTools\Facades\JsonLd::class,
-
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
 
     ],
 

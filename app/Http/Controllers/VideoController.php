@@ -10,6 +10,7 @@ use App\Video;
 use Illuminate\Http\Request;
 use Auth;
 
+use Artesaos\SEOTools\Facades\SEOTools;
 class VideoController extends Controller
 {
     public function __construct()
@@ -26,6 +27,15 @@ class VideoController extends Controller
     {
         //
         $videos=Video::orderBy('created_at', 'desc')->paginate(12);
+
+        SEOTools::setTitle('Minaddis Videos');
+        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::opengraph()->setUrl('https://minaddis.com/video');
+        SEOTools::setCanonical('https://minaddis.com/video');
+        SEOTools::opengraph()->addProperty('type', 'videos');
+        SEOTools::twitter()->setSite('@minaddis');
+        SEOTools::jsonLd()->addImage('https://minaddis.com/img/logo.png');
+
         return view('video.index')->with('videos',$videos);
     }
 
@@ -107,7 +117,17 @@ class VideoController extends Controller
           $history->save();
         }
 
-return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category,'subscribers'=>$usbscribers]);
+
+
+        SEOTools::setTitle('Minaddis Watch'.$video->title);
+        SEOTools::setDescription($video->detail.'Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::opengraph()->setUrl('https://minaddis.com/video/'.$video->id);
+        SEOTools::setCanonical('https://minaddis.com/video/'.$video->id);
+        SEOTools::opengraph()->addProperty('type', 'videos');
+        SEOTools::twitter()->setSite('@minaddis');
+        SEOTools::jsonLd()->addImage($video->thumb_big);
+
+        return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category,'subscribers'=>$usbscribers]);
 
     }
 

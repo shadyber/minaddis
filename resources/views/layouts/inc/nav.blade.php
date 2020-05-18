@@ -6,11 +6,12 @@
     </button> &nbsp;&nbsp;
     <a class="navbar-brand mr-1" href="/"><img class="img-fluid" alt="" src="/img/logo.png"></a>
     <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search">
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search" action="/search" method="POST" role="search">
+        {{ csrf_field() }}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input type="text" name="key" class="form-control" placeholder="Search for...">
             <div class="input-group-append">
-                <button class="btn btn-light" type="button">
+                <button class="btn btn-light" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </div>

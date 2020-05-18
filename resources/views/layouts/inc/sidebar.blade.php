@@ -12,6 +12,12 @@
             <span>Channels</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/subscription">
+            <i class="fas fa-fw fa-rss"></i>
+            <span>My Subscriptions</span>
+        </a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link" href="/video/create">

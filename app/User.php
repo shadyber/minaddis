@@ -15,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function channels()
     {
-        return $this->hasMany(Video::class);
+        return $this->hasMany(Channels::class);
     }
     public function history()
     {

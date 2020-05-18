@@ -1,7 +1,8 @@
 <?php
 
+use App\Video;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +27,20 @@ Route::resource('/video','VideoController');
 Route::resource('/category','CategoryController');
 Route::resource('/channel','ChannelsController');
 Route::resource('/history','HistoryController');
-Route::resource('/subscribtion','SubscribtionController');
+Route::resource('/subscription','SubscribtionController');
 Route::resource('/review','ReviewController');
 
+Route::any('/search',function(){
+    $q = request( 'key' );
+    $videos = Video::where('title','LIKE','%'.$q.'%')->orWhere('detail','LIKE','%'.$q.'%')->orWhere('tags','LIKE','%'.$q.'%')->orWhere('casts','LIKE','%'.$q.'%')->orderBy('visit', 'desc')->paginate(15);
+    if(count($videos) > 0)
+    {
+        return view('result')->with('videos',$videos);
+    }else{
+        return view('result')->with('videos',$videos);
+    }
+
+});
 
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');

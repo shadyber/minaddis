@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $videos=Video::all();
-        return view('home')->with('videos',$videos);
+
+        return view('home');
     }
 }

@@ -20,6 +20,9 @@ class SubscribtionController extends Controller
     public function index()
     {
         //
+        $user=Auth::user();
+
+        return view('channel.subscribtions')->with('user',$user);
     }
 
     /**

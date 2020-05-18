@@ -35,7 +35,7 @@
                         <div class="single-video-title box mb-3">
                             <h2><a href="#">{{$vid->title}}.</a></h2>
                             <p class="mb-0"><i class="fas fa-eye"></i> {{$vid->visit}} views</p>
-                          
+
                             <div class="fb-share-button" data-href="https://minaddis.com/video/{{$vid->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fminaddis.com%2Fvideo%2F{{$vid->id}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 
 
@@ -59,7 +59,9 @@
                             <p>{{$category[0]->name}}</p>
                             <h6>About :</h6>
                             @include('layouts.components.share', ['url' => 'https://minaddis.com/video/'.$vid->id])
-                           <p>{{$vid->detail}}</p>
+                           <p>
+                               <img src="{{$vid->thumb_big}}" class="img img-thumbnail" width="150px" alt="{{$vid->title}} on minaddis">
+                               {{$vid->detail}} </p>
                             <h6>Tags :</h6>
                             <p class="tags mb-0">
                                 @foreach(explode(',', $vid->tags) as $tags)

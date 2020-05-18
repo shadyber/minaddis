@@ -37,6 +37,7 @@
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+    <script data-ad-client="ca-pub-3780418992794226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body id="page-top">
 <div id="fb-root"></div>

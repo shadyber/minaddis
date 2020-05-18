@@ -15,6 +15,11 @@ class Video extends Model
     {
         return $this->hasMany(History::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -16,7 +16,10 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('video_id')->unsigned();
+
+            $table->foreign('video_id')->references('id')->on('videos');
             $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->longText('review');
             $table->integer('star');

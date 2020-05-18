@@ -1,7 +1,21 @@
 
 @extends('layouts.app')
-@section('content')
 
+@section('content')
+    <style>
+        .animated {
+            -webkit-transition: height 0.2s;
+            -moz-transition: height 0.2s;
+            transition: height 0.2s;
+        }
+
+        .stars
+        {
+            margin: 20px 0;
+            font-size: 24px;
+            color: #d17581;
+        }
+    </style>
             <div class="row">
                 <div class="col-md-8">
                     <div class="single-video-left">
@@ -40,6 +54,7 @@
                             <h6>Category :</h6>
                             <p>{{$category[0]->name}}</p>
                             <h6>About :</h6>
+                            @include('layouts.components.share', ['url' => 'https://minaddis.com/video/'.$vid->id])
                            <p>{{$vid->detail}}</p>
                             <h6>Tags :</h6>
                             <p class="tags mb-0">
@@ -48,6 +63,84 @@
                                   @endforeach
 
                             </p>
+                        </div>
+
+                        <div class="single-video-author box mb-3 ">
+                            <hr>
+                                             {!! Form::open(['url' => '/review','method'=>'post','class'=>' form-horizontal']) !!}
+                        <div class="col-md-10">
+                            <a href="javascript: rate('1')" class="rate" value="1"><i class="fa fa-star fa-x2"> </i> </a>
+                            <a href="javascript: rate('2')" class="rate" value="2"><i class="fa fa-star fa-x2"> </i> </a>
+                            <a href="javascript: rate('3')" class="rate" value="3"><i class="fa fa-star fa-x2"> </i> </a>
+                            <a href="javascript: rate('4')" class="rate" value="4"><i class="fa fa-star fa-x2"> </i> </a>
+                            <a href="javascript: rate('5')" class="rate" value="5"><i class="fa fa-star fa-x2"></i> </a>
+                        </div>
+
+                                                <input type="hidden" value="{{$vid->id}}" name="video_id">
+                                                <input type="hidden" name="star" value="1" id="star" class="form-control" required />
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2" for="title">Title:</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="title" name="title" placeholder="Title for Your review" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2" for="review">Reviewe:</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea class="form-control" id="review" name="review" placeholder="Leave a review" required>
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-10">
+                                    <small class=""> </small>
+                                    <button type="submit" class="btn btn-success btn-green float-right">Leave a Review</button>
+
+                                </div>
+                            </div>
+
+
+                                             {!! Form::close() !!}
+
+
+
+
+
+
+                                        <div class="review-block">
+                                            @foreach($vid->reviews as $review)
+                                            <hr/>
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+                                                    <img src="{{$review->user->avatar}}" class="img-rounded">
+                                                    <div class="review-block-name"><a href="#">{{$review->user->name}}</a></div>
+                                                    <div class="review-block-date"><small>  {{$review->created_at->diffForHumans()}}</small> </div>
+                                                </div>
+
+
+                                                <div class="col-sm-9">
+                                                    <div class="review-block-rate">
+                                                @for($i=0;$i<$review->star;$i++)
+                                                 <i class="fa fa-star"></i>
+                                                @endfor
+                                                    @for($i=$review->star-1;$i>$review->star;$i--)
+                                                        <i class="fa fa-minus"></i>
+                                                    @endfor
+
+
+                                                    </div>
+                                                    <div class="review-block-title">{{$review->title}}</div>
+                                                    <div class="review-block-description">{{$review->review}}</div>
+                                                </div>
+                                            </div>
+                                                @endforeach
+                                        </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -197,5 +290,36 @@ var video={!! json_encode($vid->toArray()) !!}
     }
     function stopVideo() {
         player.stopVideo();
+    }
+</script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script>
+
+    var popupSize = {
+        width: 780,
+        height: 550
+    };
+
+    $(document).on('click', '.social-buttons > a', function(e){
+
+        var
+            verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+            horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+        var popup = window.open($(this).prop('href'), 'social',
+            'width='+popupSize.width+',height='+popupSize.height+
+            ',left='+verticalPos+',top='+horisontalPos+
+            ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+        if (popup) {
+            popup.focus();
+            e.preventDefault();
+        }
+
+    });
+</script>
+<script>
+    function rate(value){
+document.getElementById('star').value=value;
     }
 </script>

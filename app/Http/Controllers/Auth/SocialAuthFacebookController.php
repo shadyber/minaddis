@@ -1,31 +1,61 @@
 <?php
 
+
+
 namespace App\Http\Controllers\Auth;
 
+
+
 use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Http\Request;
+
 use Socialite;
-use App\Services\SocialFacebookAccountService;
+
+use Auth;
+
+use Exception;
+
+use App\User;
+
+
+
 class SocialAuthFacebookController extends Controller
+
 {
+
     /**
-     * Create a redirect method to facebook api.
+
+     * Create a new controller instance.
+
      *
+
      * @return void
+
      */
-    public function redirect()
+
+    public function redirectToFacebook()
+
     {
+
         return Socialite::driver('facebook')->redirect();
+
     }
+
+
+
     /**
-     * Return a callback method from facebook api.
+
+     * Create a new controller instance.
+
      *
-     * @return callback URL from facebook
+
+     * @return void
+
      */
-    public function callback()
+
+    public function handleFacebookCallback()
+
     {
-         try {
+        try {
             $user = Socialite::driver('facebook')->stateless()->user();
         } catch (\Exception $e) {
             return redirect()->route('login');
@@ -35,17 +65,29 @@ class SocialAuthFacebookController extends Controller
 
         if ($existingUser) {
             auth()->login($existingUser, true);
-        } else {
-            $newUser                    = new User;
-            $newUser->name              = $user->getName();
-            $newUser->email             = $user->getEmail();
-            $newUser->email_verified_at = now();
-            $newUser->avatar            = $user->getAvatar();
-            $newUser->password         =encrypt('passw)rd');
-            $newUser->save();
-
-            auth()->login($newUser, true);
         }
-         return redirect()->to('/home');
+
+        else {
+            $existingUser = User::where('email', $user->getId() . '@facebook.com')->first();
+            if ($existingUser) {
+                auth()->login($existingUser, true);
+            } else {
+
+                $newUser = new User;
+                $newUser->name = $user->getName();
+                $newUser->email = $user->getEmail();
+                if (!$newUser->email) {
+                    $newUser->email = $user->getId() . '@facebook.com';
+                }
+                $newUser->email_verified_at = now();
+                $newUser->avatar = $user->getAvatar();
+                $newUser->password = encrypt('passw)rd');
+                $newUser->save();
+
+                auth()->login($newUser, true);
+            }
+        }
+        return redirect('/home');
     }
+
 }

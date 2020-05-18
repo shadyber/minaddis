@@ -27,10 +27,11 @@ Route::resource('/category','CategoryController');
 Route::resource('/channel','ChannelsController');
 Route::resource('/history','HistoryController');
 Route::resource('/subscribtion','SubscribtionController');
+Route::resource('/review','ReviewController');
 
 
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
-Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirect');
-Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');
+Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirectToFacebook');
+Route::get('/callback', 'Auth\SocialAuthFacebookController@handleFacebookCallback');

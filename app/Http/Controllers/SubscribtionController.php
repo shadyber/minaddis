@@ -48,10 +48,11 @@ class SubscribtionController extends Controller
 
          $subscribe=new Subscribtion();
 
-         $subscribe->channels_id=\request('channel_id');
+         $subscribe->channels_id=request('channel_id');
          $subscribe->user_id=Auth::user()->id;
 
          $subscribe->save();
+
      }
 
         return redirect()->back()->with('success', 'done');

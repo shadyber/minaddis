@@ -25,13 +25,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Subscribtion::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'google_id'
+        'name', 'email', 'password'
     ];
 
     /**

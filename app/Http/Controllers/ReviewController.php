@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use Illuminate\Http\Request;
+use Auth;
 
 class ReviewController extends Controller
 {
@@ -15,6 +16,7 @@ class ReviewController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -36,6 +38,17 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
+
+        $review=new Review();
+
+        $review->video_id=request('video_id');
+        $review->star=request('star');
+        $review->title=request('title');
+        $review->review=request('review');
+        $review->user_id=Auth::user()->id;
+
+        $review->save();
+        return redirect()->back()->with('success', 'done');
     }
 
     /**

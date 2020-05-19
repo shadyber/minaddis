@@ -67,7 +67,7 @@
                     <option value="{{$channel->id}}">{{$channel->name}}</option>
                 @endforeach
             </select>
-            <a href="/channel/create" class="btn btn-default">Create a Channel</a>
+            <a href="/channel/create" class="btn btn-green">Create a Channel</a>
         </div>
 
     </div>

@@ -40,6 +40,6 @@
                     </div>
                 @endforeach
 
-
+<div>{{$videos->links()}}</div>
 
 @endsection

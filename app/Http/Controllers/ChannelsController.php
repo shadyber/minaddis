@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channels;
 use App\User;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Auth;
 use App\Video;
 use Illuminate\Http\Request;
@@ -23,6 +24,17 @@ class ChannelsController extends Controller
         //
         $channels =Channels::paginate(12);
 $videos=Video::orderBy('visit', 'desc')->paginate(4);
+        SEOTools::setTitle('Minaddis My Watch History');
+        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::opengraph()->setUrl('https://minaddis.com/history');
+        SEOTools::setCanonical('https://minaddis.com/history');
+        SEOTools::opengraph()->addProperty('type', 'Videos');
+        SEOTools::twitter()->setSite('@minaddis');
+
+        SEOTools::OpenGraph()->addImage($videos->last()->thumb_big);
+        SEOTools::OpenGraph()->addImage($videos->last()->thumb_small);
+
+
         return view('channel.index', ['channels' => $channels,'videos'=>$videos]);
     }
 
@@ -73,6 +85,17 @@ return redirect('/video/create');
     {
      $videos=$channel->videos()->orderBy('created_at', 'desc')->paginate(12);
      //return $videos;
+
+        $videos=Video::orderBy('visit', 'desc')->paginate(4);
+        SEOTools::setTitle('Minaddis My Watch Channel');
+        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::opengraph()->setUrl('https://minaddis.com/history');
+        SEOTools::setCanonical('https://minaddis.com/history');
+        SEOTools::opengraph()->addProperty('type', 'Videos');
+        SEOTools::twitter()->setSite('@minaddis');
+
+        SEOTools::OpenGraph()->addImage($channel->avatar);
+        SEOTools::OpenGraph()->addImage($channel->banner);
         return view('channel.show')->with(['videos'=>$videos,'channel'=>$channel]);
     }
 

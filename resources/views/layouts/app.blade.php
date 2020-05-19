@@ -40,6 +40,7 @@
     <script data-ad-client="ca-pub-3780418992794226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body id="page-top">
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec3b47b7db58d0012e96110&product=video-share-buttons&cms=sop' async='async'></script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=1241046355944849&autoLogAppEvents=1"></script>
 <div id="app">

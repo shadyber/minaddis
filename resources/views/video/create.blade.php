@@ -61,17 +61,20 @@
 
     <div class="form-group">
         <label class="control-label col-sm-2" for="channels_id  ">Select a Channel </label>
-        <div class="col-sm-10"><small>Create a Channal if you have no Channel Yet.</small>
+        <div class="col-sm-8"><small>Create a Channal if you have no Channel Yet.</small>
             <select class="form-control" id="channels_id" name="channels_id" placeholder="Your Channel" required>
            @foreach($channels as $channel)
                     <option value="{{$channel->id}}">{{$channel->name}}</option>
                 @endforeach
             </select>
-            <a href="/channel/create" class="btn btn-green">Create a Channel</a>
-        </div>
+
 
     </div>
-
+    <div class="col-sm-2"><small>
+            <a href="/channel/create" class="btn btn-outline-warning">Create a Channel</a>
+        </small>
+    </div>
+</div>
     <div class="form-group">
         <label class="control-label col-sm-2" for="casts">Artists:</label>
         <div class="col-sm-10">

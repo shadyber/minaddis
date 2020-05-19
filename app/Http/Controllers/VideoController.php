@@ -34,7 +34,10 @@ class VideoController extends Controller
         SEOTools::setCanonical('https://minaddis.com/video');
         SEOTools::opengraph()->addProperty('type', 'videos');
         SEOTools::twitter()->setSite('@minaddis');
-        SEOTools::jsonLd()->addImage('https://minaddis.com/img/logo.png');
+
+        SEOTools::OpenGraph()->addImage($videos->last()->thumb_big);
+        SEOTools::OpenGraph()->addImage($videos->last()->thumb_small);
+
 
         return view('video.index')->with('videos',$videos);
     }

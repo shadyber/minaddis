@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subscribtion;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Auth;
 class SubscribtionController extends Controller
@@ -21,6 +22,13 @@ class SubscribtionController extends Controller
     {
         //
         $user=Auth::user();
+        SEOTools::setTitle('Minaddis Subscribtion');
+        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
+        SEOTools::opengraph()->setUrl('https://minaddis.com/subscriptions');
+        SEOTools::setCanonical('https://minaddis.com/subscribtions');
+        SEOTools::opengraph()->addProperty('type', 'Article');
+        SEOTools::twitter()->setSite('@minaddis');
+
 
         return view('channel.subscribtions')->with('user',$user);
     }

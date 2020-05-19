@@ -22,16 +22,6 @@ class HistoryController extends Controller
         //
         $user_id=Auth::user()->id;
         $histories=History::where('user_id', 'LIKE', '' . $user_id. '')->orderBy('created_at', 'desc')->paginate(12);
-//return ($histories);
-        SEOTools::setTitle('Minaddis My Watch History');
-        SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
-        SEOTools::opengraph()->setUrl('https://minaddis.com/history');
-        SEOTools::setCanonical('https://minaddis.com/history');
-        SEOTools::opengraph()->addProperty('type', 'Videos');
-        SEOTools::twitter()->setSite('@minaddis');
-
-        SEOTools::OpenGraph()->addImage($histories->videos->last()->thumb_big);
-        SEOTools::OpenGraph()->addImage($histories->videos->last()->thumb_small);
 
         return view('history.index')->with('histories',$histories);
     }

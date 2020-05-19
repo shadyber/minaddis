@@ -13,7 +13,7 @@ return [
             'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description'  => 'Minaddis : Selected Drama , Music , Movies and Greate Videos from all over the world', // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
+            'keywords'     => ['minaddis','min','addis','amharic music','amharic drama' , 'amharic movies','new videos','minadd'],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
             'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
@@ -36,12 +36,12 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
+            'title'       => 'Minaddis Videos - Monitize Your Youtube Videos and get huge traffic', // set false to total remove
+            'description' => 'Minaddis : monitize your channel get a traffic for your youtube videos', // set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
-            'images'      => [],
+            'site_name'   => true,
+            'images'      => ['https://minaddis.com/img/minaddis.jpg'],
         ],
     ],
     'twitter' => [
@@ -58,11 +58,11 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'title'       => 'Minaddis Videos - Monitize your videos by geting a huge traffic to youtube from minaddis', // set false to total remove
+            'description' => 'Minaddis : monitize your channel get a traffic for your youtube videos', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => 'WebPage',
-            'images'      => [],
+            'images'      => ['https://minaddis.com/img/minaddis.jpg'],
         ],
     ],
 ];

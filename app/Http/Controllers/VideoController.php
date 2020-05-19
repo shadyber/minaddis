@@ -105,8 +105,7 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         //
-        $video->visit++;
-        $video->save();
+
         $cat=$video["category_id"];
         $videos= Video::where('category_id', 'LIKE', '' . $cat. '')->get();
         $channel=Channels::where('id', 'LIKE',''.$video->channels_id)->get();
@@ -124,8 +123,8 @@ class VideoController extends Controller
 
         SEOTools::setTitle('Minaddis Watch'.$video->title);
         SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
-        SEOTools::opengraph()->setUrl('https://minaddis.com/video/'.$video->id);
-        SEOTools::setCanonical('https://minaddis.com/video/'.$video->id);
+        SEOTools::opengraph()->setUrl('https://minaddis.com/video/'.$video->id.'');
+        SEOTools::setCanonical('https://minaddis.com/video/'.$video->id.'');
         SEOTools::opengraph()->addProperty('type', 'videos');
         SEOTools::twitter()->setSite('@minaddis');
         SEOTools::jsonLd()->addImage($video->thumb_big);
@@ -133,7 +132,8 @@ class VideoController extends Controller
         SEOTools::OpenGraph()->addImage($video->thumb_big);
          SEOTools::OpenGraph()->addImage($video->thumb_small);
 
-
+        $video->visit++;
+        $video->save();
         return view('video.watch')->with(['vid'=>$video,'videos'=>$videos,'channel'=>$channel,'category'=>$category,'subscribers'=>$usbscribers]);
 
     }

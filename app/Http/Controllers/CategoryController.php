@@ -50,9 +50,9 @@ class CategoryController extends Controller
     {
         //
 
-        $videos= Video::where('category_id', 'LIKE', '' . $category->id. '')->orderBy('created_at', 'desc')->paginate(12);
+        $videos= Video::where('category_id', 'LIKE', '' . $category->id)->orderBy('created_at', 'desc')->paginate(12);
 
-        $videos=Video::orderBy('visit', 'desc')->paginate(4);
+         
         SEOTools::setTitle('Minaddis Videos Category');
         SEOTools::setDescription('Minadis Provides you selected videos from all around the world for you join and share your videos');
         SEOTools::opengraph()->setUrl('https://minaddis.com/history');
@@ -62,6 +62,7 @@ class CategoryController extends Controller
 
         SEOTools::OpenGraph()->addImage($videos->last()->thumb_big);
         SEOTools::OpenGraph()->addImage($videos->last()->thumb_small);
+
         return view('catagory.show')->with(['category'=>$category,'videos'=>$videos]);
     }
 
